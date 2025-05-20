@@ -35,7 +35,8 @@ class ApiSigaSigaRestSettings:
     def __init__(self):
         self.HOST: str = os.getenv('URL_API-SIGASIGA-REST', 'http://api-sigasiga-rest')
         self.PORT: int = int(os.getenv('PORT_API-SIGASIGA-REST', '5000'))
-        self.URL: str = f"{self.HOST}:{self.PORT}"
+        self.URL: str = f"{self.HOST}"
+
 
 # Main settings class
 class Settings:
