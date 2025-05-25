@@ -4,11 +4,13 @@ from app.libs.api_sigasiga_rest import ApiSigaSigaRest
 
 async def stream_receiver(websocket: WebSocket, redis_client: redis.Redis):
     await websocket.accept()
-    ws_id = websocket._headers.get("sec-websocket-key")
+    # ws_id = websocket._headers.get("sec-websocket-key")
     api_sigasiga_rest = ApiSigaSigaRest()
     query_params = websocket.query_params
     event_id = query_params.get("eventId")
     token = query_params.get("token")
+    client_id = query_params.get("clientId")
+    ws_id = client_id
     valid_client = await api_sigasiga_rest.validate_and_start_client(token, ws_id)
     client_input_video_buffer = f"{event_id}-chunks_data_input_buffer-{ws_id}"
 
